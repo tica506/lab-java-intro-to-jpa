@@ -1,41 +1,59 @@
 package com.example.lab_java_intro_to_jpa.model;
-public class FlightBooking {
-    private int bookingId;
-    private int customerId;
-    private int flightId;
 
-    // Empty constructor for Hibernate
+import jakarta.persistence.*;
+
+@Entity
+public class FlightBooking {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer bookingId;
+
+    // here the reference to customerId
+    @ManyToOne
+    private Customer customer;
+
+    //here reference to flightId
+    @ManyToOne
+    private Flight flight;
+
     public FlightBooking() {
     }
 
-    // Parameterized constructor
-    public FlightBooking(int customerId, int flightId) {
-        this.customerId = customerId;
-        this.flightId = flightId;
+    public FlightBooking(Integer bookingId, Customer customer, Flight flight) {
+        this.customer = customer;
+        this.flight = flight;
     }
 
-    // Getter and setter methods
-    public int getBookingId() {
+    public Integer getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
+    public void setBookingId(Integer bookingId) {
         this.bookingId = bookingId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public int getFlightId() {
-        return flightId;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setFlightId(int flightId) {
-        this.flightId = flightId;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+    @Override
+    public String toString() {
+        return "FlightBooking{" +
+                "bookingId=" + bookingId +
+                ", customer=" + customer +
+                ", flight=" + flight +
+                '}';
     }
 }

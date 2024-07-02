@@ -1,29 +1,35 @@
 package com.example.lab_java_intro_to_jpa.model;
+
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
 public class Flight {
-    private int flightId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer flightId;
     private String flightNumber;
     private String aircraft;
-    private int totalAircraftSeats;
-    private int flightMileage;
+    private Integer totalAircraftSeats;
+    private Integer flightMileage;
 
-    // Empty constructor for Hibernate
     public Flight() {
     }
 
-    // Parameterized constructor
-    public Flight(String flightNumber, String aircraft, int totalAircraftSeats, int flightMileage) {
+    public Flight(String flightNumber, String aircraft, Integer totalAircraftSeats, Integer flightMileage) {
         this.flightNumber = flightNumber;
         this.aircraft = aircraft;
         this.totalAircraftSeats = totalAircraftSeats;
         this.flightMileage = flightMileage;
     }
 
-    // Getter and setter methods
-    public int getFlightId() {
+    public Integer getFlightId() {
         return flightId;
     }
 
-    public void setFlightId(int flightId) {
+    public void setFlightId(Integer flightId) {
         this.flightId = flightId;
     }
 
@@ -43,19 +49,30 @@ public class Flight {
         this.aircraft = aircraft;
     }
 
-    public int getTotalAircraftSeats() {
+    public Integer getTotalAircraftSeats() {
         return totalAircraftSeats;
     }
 
-    public void setTotalAircraftSeats(int totalAircraftSeats) {
+    public void setTotalAircraftSeats(Integer totalAircraftSeats) {
         this.totalAircraftSeats = totalAircraftSeats;
     }
 
-    public int getFlightMileage() {
+    public Integer getFlightMileage() {
         return flightMileage;
     }
 
-    public void setFlightMileage(int flightMileage) {
+    public void setFlightMileage(Integer flightMileage) {
         this.flightMileage = flightMileage;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "flightId=" + flightId +
+                ", flightNumber='" + flightNumber + '\'' +
+                ", aircraft='" + aircraft + '\'' +
+                ", totalAircraftSeats=" + totalAircraftSeats +
+                ", flightMileage=" + flightMileage +
+                '}';
     }
 }

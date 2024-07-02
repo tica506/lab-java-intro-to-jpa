@@ -1,28 +1,33 @@
 package com.example.lab_java_intro_to_jpa.model;
 
-public class Customer {
-    private int customerId;
-    private String customerName;
-    private String customerStatus;
-    private int totalCustomerMileage;
+import jakarta.persistence.*;
 
-    // Empty constructor for Hibernate
+@Entity
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer customerId;
+    private String customerName;
+
+    @Enumerated(EnumType.STRING)
+    private CustomerStatus customerStatus;
+    private Integer totalCustomerMileage;
+
     public Customer() {
     }
 
-    // Parameterized constructor
-    public Customer(String customerName, String customerStatus, int totalCustomerMileage) {
+    public Customer(String customerName, CustomerStatus customerStatus, Integer totalCustomerMileage) {
         this.customerName = customerName;
         this.customerStatus = customerStatus;
         this.totalCustomerMileage = totalCustomerMileage;
     }
 
-    // Getter and setter methods
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -34,19 +39,29 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public String getCustomerStatus() {
+    public CustomerStatus getCustomerStatus() {
         return customerStatus;
     }
 
-    public void setCustomerStatus(String customerStatus) {
+    public void setCustomerStatus(CustomerStatus customerStatus) {
         this.customerStatus = customerStatus;
     }
 
-    public int getTotalCustomerMileage() {
+    public Integer getTotalCustomerMileage() {
         return totalCustomerMileage;
     }
 
-    public void setTotalCustomerMileage(int totalCustomerMileage) {
+    public void setTotalCustomerMileage(Integer totalCustomerMileage) {
         this.totalCustomerMileage = totalCustomerMileage;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerStatus=" + customerStatus +
+                ", totalCustomerMileage=" + totalCustomerMileage +
+                '}';
     }
 }
